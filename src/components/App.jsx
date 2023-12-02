@@ -2,7 +2,6 @@ import '../index.css'
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import Main from "./Main.jsx";
-import PopupWithForm from "./PopupWithForm.jsx";
 import ImagePopup from "./ImagePopup.jsx";
 import {useEffect, useState} from "react";
 import api from "../utils/api.js";
@@ -11,6 +10,11 @@ import EditProfilePopup from "./EditProfilePopup.jsx";
 import EditAvatarPopup from "./EditAvatarPopup.jsx";
 import AddPlacePopup from "./AddPlacePopup.jsx";
 import DeleteCardPopup from "./DeleteCardPopup.jsx";
+import {Route, Routes} from "react-router-dom";
+import Register from "./Register.jsx";
+import Login from "./Login.jsx";
+import InfoTooltip from "./InfoTooltip.jsx";
+
 
 function App() {
     //пишем [переменные is и их внутреннее состояние setIs] для открытия попапов
@@ -18,7 +22,6 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
     const [isDeletePopup, setIsDeletePopup] = useState(false) //попап удаления своей карточки
-    const [isLoading, setIsLoading] = useState(false)
 
     //функции обработчики событий, которые изменяют внутреннее состояние попапов
     function handleEditProfileClick() { //редактирование профиля
@@ -30,8 +33,7 @@ function App() {
     function handleEditAvatarClick() { //редактирование аватара
         setIsEditAvatarPopupOpen(true)
     }
-
-    function handleDeleteCardPopup() { //попап удаления своей карточки заготовка
+    function handleDeleteCardPopup() { //попап удаления своей карточки
         setIsDeletePopup(true)
     }
 
@@ -42,6 +44,7 @@ function App() {
         setSelectedCard({})
         setIsDeletePopup(false)
         setCardDel('')
+        setIsInfoToolTip(false)
     }
 
     //стейт-переменная открытия карточки на весь экран
@@ -83,8 +86,11 @@ function App() {
             .catch(console.error)
     }
 
+    // переменная состояния загрузки - спиннер
+    const [isLoading, setIsLoading] = useState(false)
+
+    // функционал поддержки удаления карточки
     const [cardDel, setCardDel] = useState('')
-    // функциона поддержки удаления карточки
     function handleCardDelete(e) {
         setIsLoading(true)
         e.preventDefault();
@@ -133,20 +139,31 @@ function App() {
             .finally(() => setIsLoading(false))
     }
 
+    //переменная состояния успешной аутентификации (меняем текст и картинку в попапе InfoTooltip
+    const [isSuccess, setIsSuccess] = useState(false)
+
+    //переменная попапа уведомления InfoTooltip
+    const [isInfoToolTip, setIsInfoToolTip] = useState(false)
+
   return (
       // оборачиваем все содержимое в контекст с провайдером
       <CurrentUserContext.Provider value={currentUser}>
           <Header/>
-          <Main
-              onEditProfile={handleEditProfileClick} //редактирование профиля
-              onAddPlace={handleAddPlaceClick} //добавление картинки
-              onEditAvatar={handleEditAvatarClick} //редактирование аватара
-              onCardClick={handleOpenFullScreenCard}
-              cards={cards}
-              onCardLike={handleCardLike}
-              setCardDel={setCardDel}
-              onCardDeletePopup={handleDeleteCardPopup}
-          />
+          <Routes>
+              <Route path='/' element={
+                  <Main
+                  onEditProfile={handleEditProfileClick} //редактирование профиля
+                  onAddPlace={handleAddPlaceClick} //добавление картинки
+                  onEditAvatar={handleEditAvatarClick} //редактирование аватара
+                  onCardClick={handleOpenFullScreenCard}
+                  cards={cards}
+                  onCardLike={handleCardLike}
+                  setCardDel={setCardDel}
+                  onCardDeletePopup={handleDeleteCardPopup}
+              />} />
+              <Route path='/sign-up' element={<Register />} />
+              <Route path='/sign-in' element={<Login />} />
+          </Routes>
           <Footer/>
 
           <EditProfilePopup
@@ -181,6 +198,12 @@ function App() {
               card={selectedCard}
               onClose={closeAllPopups}
               isOpen={selectedCard._id !== undefined}
+          />
+
+          <InfoTooltip
+              isSuccess={isSuccess}
+              isOpen={isInfoToolTip}
+              onClose={closeAllPopups}
           />
       </CurrentUserContext.Provider>
   )

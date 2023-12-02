@@ -1,8 +1,7 @@
 // !--MAIN - ЭТО РАЗМЕТКА ДЛЯ ОСНОВНОЙ ЧАСТИ СТРАНИЦЫ (ФУТЕР И ХЕДЕР ОТДЕЛЬНО)--! //
 import addButton from "../images/addButton.svg";
 import Card from "./Card.jsx";
-import api from "../utils/api.js";
-import {useState, useEffect, useContext} from "react";
+import {useContext} from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 function Main({cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike, setCardDel, onCardDeletePopup}) {
