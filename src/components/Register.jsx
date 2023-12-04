@@ -1,8 +1,27 @@
 import {Link} from "react-router-dom"
-function Register() {
+import {useState} from "react";
+
+function Register({onRegister}) {
+    //переменные состояния для работы с инпутами
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleChangeEmail(e) {
+        setEmail(e.target.value);
+    }
+
+    function handleChangePassword(e) {
+        setPassword(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onRegister(email, password);
+    }
+
     return(
         <div className='auth'>
-            <form className='auth__form'>
+            <form name='registerForm' id='registerForm' className='auth__form' onSubmit={handleSubmit}>
                 <h1 className='auth__title'>Регистрация</h1>
                 <input
                     className='auth__input'
@@ -11,22 +30,23 @@ function Register() {
                     id="email-input"
                     placeholder="Email"
                     required
-                    // onChange={}
-                    // value={}
+                    onChange={handleChangeEmail}
+                    value={email}
                 />
                 <input
                     className='auth__input'
-                    type="text"
+                    type="password"
                     name="PasswordInput"
                     id="password-input"
                     placeholder="Пароль"
                     required
-                    // onChange={}
-                    // value={}
+                    onChange={handleChangePassword}
+                    value={password}
                 />
                 <button className='auth__button'>Зарегистрироваться</button>
             </form>
-            <h2 className='auth__subtitle'>Уже зарегистрированы?&ensp;<Link to='/sign-in' className='auth__subtitle'>Войти</Link></h2>
+            <p className='auth__subtitle'>Уже зарегистрированы?&ensp;
+                <Link to='/sign-in' className='auth__subtitle'>Войти</Link></p>
         </div>
     )
 }

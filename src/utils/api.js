@@ -95,8 +95,12 @@ class Api {
 
 }
 
-import {apiConfig} from "./constants.js";
-
-const api = new Api(apiConfig)
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-77',
+    headers: {
+        authorization: '7f52bf50-52cc-48bd-9c80-c48495da8ea4',
+        'Content-Type': 'application/json'
+    }
+})
 
 export default api
