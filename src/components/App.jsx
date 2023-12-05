@@ -97,7 +97,7 @@ function App() {
         }
     }, [isLoggedIn])
 
-    // функционал поддержки лайков и дизлайков
+    // функционал поддержки лайков и дизлайко
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
         const isLiked = card.likes.some(i => i._id === currentUser._id);
