@@ -15,7 +15,7 @@ import Register from "./Register.jsx";
 import Login from "./Login.jsx";
 import InfoTooltip from "./InfoTooltip.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
-import * as auth from '../utils/auth.jsx'
+import * as auth from '../utils/auth.js'
 
 
 function App() {

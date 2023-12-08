@@ -26,7 +26,10 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser, onLoading}) {
         useEffect(() => {
             setName(currentUser.name);
             setDescription(currentUser.about);
-        }, [currentUser]);
+        }, [currentUser, isOpen]);
+            //Нужно еще следить за isOpen (за состоянием открытости),
+    // чтобы вставлять в инпуты данные пользователя, иначе, если мы удалим информацию из инпутов
+    // и просто закроем попап, то при следующем открытии инпуты будут пустые (без данных пользователя)
 
     function handleSubmit(e) {
         // Запрещаем браузеру переходить по адресу формы

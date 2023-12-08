@@ -5,14 +5,13 @@ function EditAvatarPopup ({isOpen, onClose, onUpdateAvatar, onLoading}) {
 
     const avatarRef = useRef() // используем реф, чтобы получить прямой доступ к DOM-элементу инпута и его значению
     useEffect(() => { // монтируем эффект и указывает значение пустую строку
-        avatarRef.current.value = "";
+        avatarRef.current.value = ""; // очищаем инпут попапа для последующиего обновления аватара
     }, [isOpen])
     function handleSubmit(e) {
         e.preventDefault();
         onUpdateAvatar({
             avatar: avatarRef.current.value
         });
-        e.target.reset() // очищаем инпут попапа для последующиего обновления аватара
     }
 
     return (

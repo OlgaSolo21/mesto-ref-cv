@@ -1,3 +1,9 @@
+//Можно лучше//
+//подробнее код в ревью 12 пр
+//Ревью:
+// Если интересно, можно сделать общий класс BaseApi, чтобы не дублировать метод проверки на  ok
+// и универсальный запрос в Api и Auth.
+
 export const BASE_URL = 'https://auth.nomoreparties.co';
 
 const handleResponse = (res) => {

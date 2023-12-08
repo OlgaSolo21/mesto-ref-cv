@@ -1,3 +1,5 @@
+import {usePopupClose} from "../hooks/usePopupClose.jsx";
+// изучить как внедрить хук одной строкой (см коммент ревью)
 function PopupWithForm({title, name, buttonText, children, isOpen, onClose, onSubmit}) {
     return(
         <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id={name}>
