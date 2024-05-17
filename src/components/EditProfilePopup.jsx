@@ -3,6 +3,7 @@ import {useState, useEffect, useContext} from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 
+// eslint-disable-next-line react/prop-types
 function EditProfilePopup({isOpen, onClose, onUpdateUser, onLoading}) {
 
     //стейт-переменные name и description для привязки их к полям ввода
