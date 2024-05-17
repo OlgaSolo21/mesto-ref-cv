@@ -90,9 +90,9 @@ class Api {
 }
 
 const api = new Api({
-    url: 'https://auth.nomoreparties.co',
+    url: 'https://mesto.nomoreparties.co',
     headers: {
-        authorization: '7f52bf50-52cc-48bd-9c80-c48495da8ea4',
+        //authorization: '7f52bf50-52cc-48bd-9c80-c48495da8ea4',
         'Content-Type': 'application/json'
     }
 })
