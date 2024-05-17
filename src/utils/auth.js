@@ -4,7 +4,7 @@
 // Если интересно, можно сделать общий класс BaseApi, чтобы не дублировать метод проверки на  ok
 // и универсальный запрос в Api и Auth.
 
-export const BASE_URL = 'http://localhost:5173/mesto-ref-cv';
+export const BASE_URL = 'https://olgasolo21.github.io/mesto-ref-cv';
 
 const handleResponse = (res) => {
     if (res.ok) {
