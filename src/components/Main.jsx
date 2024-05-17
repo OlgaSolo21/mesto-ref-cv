@@ -4,6 +4,7 @@ import Card from "./Card.jsx";
 import {useContext} from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
+// eslint-disable-next-line react/prop-types
 function Main({cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike, setCardDel, onCardDeletePopup}) {
 
     const currentUser = useContext(CurrentUserContext) // подписываемся на контекст current User то есть получает данные о пользователе с сервера
@@ -48,6 +49,7 @@ function Main({cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCa
             </section>
             <section className="cards">
                 <ul className="cards__elements">
+                    {/* eslint-disable-next-line react/prop-types */}
                     {cards.map((card) => (
                         <Card
                             key={card._id}
