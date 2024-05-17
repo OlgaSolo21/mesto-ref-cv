@@ -90,7 +90,7 @@ class Api {
 }
 
 const api = new Api({
-    url: 'http://localhost:5173/mesto-ref-cv/',
+    url: 'http://localhost:5173/mesto-ref-cv',
     headers: {
         // authorization: '7f52bf50-52cc-48bd-9c80-c48495da8ea4',
         'Accept': 'application/json',
