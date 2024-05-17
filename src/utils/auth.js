@@ -4,7 +4,7 @@
 // Если интересно, можно сделать общий класс BaseApi, чтобы не дублировать метод проверки на  ok
 // и универсальный запрос в Api и Auth.
 
-export const BASE_URL = 'http://localhost:3000/';
+export const BASE_URL = 'https://auth.nomoreparties.co';
 
 const handleResponse = (res) => {
     if (res.ok) {

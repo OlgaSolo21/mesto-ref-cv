@@ -1,14 +1,16 @@
 class Api {
-    constructor({url}) {
+    constructor({url, headers}) {
         this._url = url
+        this._headers = headers
     }
 
-    //"Можно сделать универсальный метод запроса с проверкой ответа
+    //"Можно сделать универсальный метод запроса с проверкой ответа,
     // чтобы не дублировать эту проверку в каждом запросе"//
-  //рекомендация ревью и наставника (подробнее в пачке еще в треде, также можно отдельным классом (см ревью))
-    _request(endpoint) {
+    //рекомендация ревью и наставника (подробнее в пачке еще в треде, также можно отдельным классом (см ревью))
+    _request(endpoint, options = {}) {
         return fetch(
-            `${ this._url }/${endpoint}`,)
+            `${ this._url }/${endpoint}`,
+            {headers: this._headers, ...options})
             .then(this._handleResponse)
     }
 
@@ -23,7 +25,7 @@ class Api {
 
     getInitialCards() { //запрос на сервер для получения карточек
         return this._request('cards', {
-                method: 'GET'
+            method: 'GET'
         })
     }
 
@@ -52,8 +54,8 @@ class Api {
 
     changeLikeCardStatus(cardId, like) {// Постановка лайка и Снятие лайка универсальная функция для App
         return this._request(`cards/${cardId}/likes`, {
-                    method: like ? 'PUT' : 'DELETE' // где like это булевая переменная которая определяется при вызове метода changeLikeCardStatus
-                })
+            method: like ? 'PUT' : 'DELETE' // где like это булевая переменная которая определяется при вызове метода changeLikeCardStatus
+        })
     }
     // setLikeCardPut(cardId) { // Постановка лайка
     //     return fetch(`${this._url}/cards/${cardId}/likes`, {
@@ -88,7 +90,11 @@ class Api {
 }
 
 const api = new Api({
-    url: 'http://localhost:3000/',
+    url: 'https://mesto.nomoreparties.co/v1/cohort-77',
+    headers: {
+        authorization: '7f52bf50-52cc-48bd-9c80-c48495da8ea4',
+        'Content-Type': 'application/json'
+    }
 })
 
 export default api
