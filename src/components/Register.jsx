@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom"
 import {useState} from "react";
 
+// eslint-disable-next-line react/prop-types
 function Register({onRegister}) {
     //переменные состояния для работы с инпутами
     const [email, setEmail] = useState('');
