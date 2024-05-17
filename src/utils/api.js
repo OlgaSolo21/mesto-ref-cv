@@ -1,16 +1,14 @@
 class Api {
-    constructor({url, headers}) {
+    constructor({url}) {
         this._url = url
-        this._headers = headers
     }
 
     //"Можно сделать универсальный метод запроса с проверкой ответа
     // чтобы не дублировать эту проверку в каждом запросе"//
   //рекомендация ревью и наставника (подробнее в пачке еще в треде, также можно отдельным классом (см ревью))
-    _request(endpoint, options = {}) {
+    _request(endpoint) {
         return fetch(
-            `${ this._url }/${endpoint}`,
-            {headers: this._headers, ...options})
+            `${ this._url }/${endpoint}`,)
             .then(this._handleResponse)
     }
 
